@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Only update if hero is in viewport
         const heroRect = hero.getBoundingClientRect();
         if (heroRect.top < window.innerHeight && heroRect.bottom > 0) {
-            hero.style.backgroundPositionY = `${scrollPosition * 0.3}px`; // Reduced multiplier for subtler effect
-            heroOverlay.style.opacity = `${0.5 - scrollPosition / 4000}`; // Smoother opacity transition
+            hero.style.backgroundPositionY = `${scrollPosition * 0.3}px`;
+            heroOverlay.style.opacity = `${0.5 - scrollPosition / 4000}`;
         }
 
         ticking = false;
@@ -45,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     franchiseButton.addEventListener('click', () => {
         modal.style.display = 'flex';
-        // Trigger modal animation
         const modalContent = document.querySelector('.modal-content');
         modalContent.classList.remove('animate-in', 'animate-reset');
         setTimeout(() => modalContent.classList.add('animate-in'), 0);
@@ -90,12 +89,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Scroll Animations for Elements
     const elementsToAnimate = document.querySelectorAll(
-        '.hero-content, .hero-content p, .hero-content h2, .menu h2, .menu-card, .menu-image, .menu-list h3, .accordion-item, .menu-info, .locations h2, .location-card, .franchise, footer p, .nav-links a, .footer-links a'
+        '.hero-content, .hero-content p, .hero-content h2, .menu h2, .menu-card, .menu-image, .menu-list h3, .accordion-item, .menu-info, .locations h2, .location-card, .feedback h2, .feedback p, .feedback-card, .franchise, footer p, .nav-links a, .footer-links a'
     );
 
     // Set index for staggered animations
     const menuCards = document.querySelectorAll('.menu-card');
     const locationCards = document.querySelectorAll('.location-card');
+    const feedbackCards = document.querySelectorAll('.feedback-card');
     const accordionItems = document.querySelectorAll('.accordion-item');
     const navLinksItems = document.querySelectorAll('.nav-links a');
     const footerLinksItems = document.querySelectorAll('.footer-links a');
@@ -106,6 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     locationCards.forEach((card, index) => {
+        card.style.setProperty('--index', index);
+    });
+
+    feedbackCards.forEach((card, index) => {
         card.style.setProperty('--index', index);
     });
 
@@ -122,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     heroSubElements.forEach((elem, index) => {
-        elem.style.setProperty('--index', index + 1); // Start after hero-content
+        elem.style.setProperty('--index', index + 1);
     });
 
     // IntersectionObserver for scroll animations
