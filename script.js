@@ -9,15 +9,34 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.querySelector('i').classList.toggle('fa-times');
     });
 
-    // Enhanced Parallax Effect for Hero Section
-    window.addEventListener('scroll', () => {
+    // Optimized Parallax Effect for Hero Section
+    let lastScrollY = window.pageYOffset;
+    let ticking = false;
+
+    const updateParallax = () => {
         const hero = document.querySelector('.hero');
         const heroOverlay = document.querySelector('.hero-overlay');
-        const scrollPosition = window.pageYOffset;
-        hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
-        hero.style.transform = `scale(${1 + scrollPosition / 5000})`;
-        heroOverlay.style.opacity = `${0.5 - scrollPosition / 2000}`;
-    });
+        const scrollPosition = lastScrollY;
+
+        // Only update if hero is in viewport
+        const heroRect = hero.getBoundingClientRect();
+        if (heroRect.top < window.innerHeight && heroRect.bottom > 0) {
+            hero.style.backgroundPositionY = `${scrollPosition * 0.3}px`; // Reduced multiplier for subtler effect
+            heroOverlay.style.opacity = `${0.5 - scrollPosition / 4000}`; // Smoother opacity transition
+        }
+
+        ticking = false;
+    };
+
+    const onScroll = () => {
+        lastScrollY = window.pageYOffset;
+        if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+        }
+    };
+
+    window.addEventListener('scroll', onScroll);
 
     // Modal Functionality
     const franchiseButton = document.querySelector('.franchise-button');

@@ -111,14 +111,14 @@ body {
     height: 100vh;
     background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
     background-size: cover, auto;
+    background-attachment: fixed; /* Use fixed for smoother parallax */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
-    will-change: background-position, transform;
-    transition: transform 0.5s ease;
+    will-change: background-position-y; /* Optimize for parallax */
 }
 
 .hero-overlay {
@@ -129,7 +129,8 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
     z-index: 0;
-    transition: opacity 0.5s ease;
+    will-change: opacity;
+    transition: opacity 0.3s ease; /* Smoother opacity transition */
 }
 
 .hero-content {
@@ -846,6 +847,10 @@ footer p.animate-in {
 
     .nav-toggle {
         display: block;
+    }
+
+    .hero {
+        background-attachment: scroll; /* Disable fixed background on mobile for performance */
     }
 
     .hero-content h1 {
