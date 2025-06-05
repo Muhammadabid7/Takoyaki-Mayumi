@@ -9,11 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.querySelector('i').classList.toggle('fa-times');
     });
 
-    // Parallax Effect for Hero Section
+    // Enhanced Parallax Effect for Hero Section
     window.addEventListener('scroll', () => {
         const hero = document.querySelector('.hero');
+        const heroOverlay = document.querySelector('.hero-overlay');
         const scrollPosition = window.pageYOffset;
         hero.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+        hero.style.transform = `scale(${1 + scrollPosition / 5000})`;
+        heroOverlay.style.opacity = `${0.5 - scrollPosition / 2000}`;
     });
 
     // Modal Functionality
@@ -23,6 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     franchiseButton.addEventListener('click', () => {
         modal.style.display = 'flex';
+        // Trigger modal animation
+        const modalContent = document.querySelector('.modal-content');
+        modalContent.classList.remove('animate-in', 'animate-reset');
+        setTimeout(() => modalContent.classList.add('animate-in'), 0);
     });
 
     modalClose.addEventListener('click', () => {
@@ -35,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Form Submission (Redirect to WhatsApp with Improved Encoding and Formatting)
+    // Form Submission (Redirect to WhatsApp)
     const form = document.getElementById('franchise-form');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -44,7 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const message = document.getElementById('message').value.trim();
         const whatsappNumber = '+6281649475421';
 
-        // Construct the message with proper formatting
         const whatsappMessage = [
             '🌟 *Franchise Inquiry - Takoyaki Mayumi* 🌟',
             '',
@@ -55,47 +61,88 @@ document.addEventListener('DOMContentLoaded', () => {
             'Please contact me regarding franchise opportunities. Thank you!'
         ].join('\n');
 
-        // Encode the entire message for WhatsApp URL
         const encodedMessage = encodeURIComponent(whatsappMessage);
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-        // Open WhatsApp chat in a new tab
         window.open(whatsappUrl, '_blank');
-
-        // Reset form and close modal
         form.reset();
         modal.style.display = 'none';
     });
 
-    // Scroll Animations for Sections
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.2 });
+    // Scroll Animations for Elements
+    const elementsToAnimate = document.querySelectorAll(
+        '.hero-content, .hero-content p, .hero-content h2, .menu h2, .menu-card, .menu-image, .menu-list h3, .accordion-item, .menu-info, .locations h2, .location-card, .franchise, footer p, .nav-links a, .footer-links a'
+    );
 
-    sections.forEach(section => {
-        observer.observe(section);
+    // Set index for staggered animations
+    const menuCards = document.querySelectorAll('.menu-card');
+    const locationCards = document.querySelectorAll('.location-card');
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    const navLinksItems = document.querySelectorAll('.nav-links a');
+    const footerLinksItems = document.querySelectorAll('.footer-links a');
+    const heroSubElements = document.querySelectorAll('.hero-content p, .hero-content h2');
+
+    menuCards.forEach((card, index) => {
+        card.style.setProperty('--index', index);
+    });
+
+    locationCards.forEach((card, index) => {
+        card.style.setProperty('--index', index);
+    });
+
+    accordionItems.forEach((item, index) => {
+        item.style.setProperty('--index', index);
+    });
+
+    navLinksItems.forEach((link, index) => {
+        link.style.setProperty('--index', index);
+    });
+
+    footerLinksItems.forEach((link, index) => {
+        link.style.setProperty('--index', index);
+    });
+
+    heroSubElements.forEach((elem, index) => {
+        elem.style.setProperty('--index', index + 1); // Start after hero-content
+    });
+
+    // IntersectionObserver for scroll animations
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    entry.target.classList.remove('animate-reset');
+                } else {
+                    entry.target.classList.remove('animate-in');
+                    entry.target.classList.add('animate-reset');
+                }
+            });
+        },
+        { threshold: 0.2, rootMargin: '0px 0px -50px 0px' }
+    );
+
+    elementsToAnimate.forEach((element) => {
+        observer.observe(element);
+    });
+
+    // Trigger navbar animations on page load
+    navLinksItems.forEach((link) => {
+        link.classList.add('animate-in');
     });
 
     // Accordion Functionality
     const accordionHeaders = document.querySelectorAll('.accordion-header');
-    accordionHeaders.forEach(header => {
+    accordionHeaders.forEach((header) => {
         header.addEventListener('click', () => {
             const content = header.nextElementSibling;
             const isActive = header.classList.contains('active');
 
-            // Close all other accordion items
-            accordionHeaders.forEach(h => {
+            accordionHeaders.forEach((h) => {
                 h.classList.remove('active');
                 h.nextElementSibling.style.display = 'none';
             });
 
-            // Toggle the clicked item
             if (!isActive) {
                 header.classList.add('active');
                 content.style.display = 'block';
@@ -103,10 +150,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-// Add fade-in class for CSS animation
-document.styleSheets[0].insertRule(`
-    .fade-in {
-        animation: fadeIn 1s ease forwards;
-    }
-`, document.styleSheets[0].cssRules.length);
