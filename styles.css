@@ -1,0 +1,644 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #fff5e6;
+    color: #333;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    z-index: 1000;
+}
+
+.navbar .logo img {
+    width: 80px;
+    border-radius: 50%;
+    border: 3px solid #d32f2f;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #b71c1c;
+}
+
+.nav-toggle {
+    display: none;
+    font-size: 1.5em;
+    color: #d32f2f;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.hero-content {
+    z-index: 1;
+    animation: fadeInDown 1.5s ease;
+}
+
+.hero-content h1 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 4.5em;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4);
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin: 10px 0;
+    opacity: 0.9;
+}
+
+.hero-content h2 {
+    font-size: 2.2em;
+    margin: 20px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.cta-button {
+    padding: 15px 40px;
+    background: linear-gradient(45deg, #d32f2f, #f44336);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.2em;
+    box-shadow: 0 5px 15px rgba(211, 47, 47, 0.5);
+    transition: all 0.3s ease;
+}
+
+.cta-button.secondary {
+    background: linear-gradient(45deg, #fff, #f5f5f5);
+    color: #d32f2f;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(211, 47, 47, 0.7);
+}
+
+.cta-button.secondary:hover {
+    background: linear-gradient(45deg, #f5f5f5, #fff);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Menu Section */
+.menu {
+    padding: 80px 20px;
+    background: #fff;
+    text-align: center;
+}
+
+.menu h2 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3em;
+    color: #d32f2f;
+    margin-bottom: 50px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.menu-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.menu-card {
+    background: #fff5e6;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 300px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.menu-icon {
+    font-size: 2.5em;
+    color: #d32f2f;
+    margin-bottom: 15px;
+}
+
+.menu-card h3 {
+    font-size: 1.6em;
+    color: #d32f2f;
+    margin-bottom: 10px;
+}
+
+.menu-card p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+.menu-image {
+    flex: 0 0 auto;
+}
+
+.menu-image img {
+    width: 350px;
+    height: 247px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-image img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Menu List */
+.menu-list {
+    max-width: 1200px;
+    margin: 50px auto 0;
+    text-align: left;
+}
+
+.menu-list h3 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 2.2em;
+    color: #d32f2f;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Accordion Styles */
+.accordion {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #ddd;
+}
+
+.accordion-header {
+    background: linear-gradient(45deg, #d32f2f, #f44336);
+    color: white;
+    padding: 15px 20px;
+    width: 100%;
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+.accordion-header::after {
+    content: '\f107';
+    font-family: 'FontAwesome';
+    font-size: 1.2em;
+}
+
+.accordion-header.active::after {
+    content: '\f106';
+}
+
+.accordion-header:hover {
+    background: linear-gradient(45deg, #b71c1c, #d32f2f);
+}
+
+.accordion-content {
+    display: none;
+    background: #fff5e6;
+    padding: 20px;
+}
+
+.accordion-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.accordion-content th,
+.accordion-content td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    font-size: 1em;
+}
+
+.accordion-content th {
+    background: #d32f2f;
+    color: white;
+    font-weight: 600;
+}
+
+.accordion-content td {
+    color: #555;
+}
+
+/* Menu Info */
+.menu-info {
+    margin-top: 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.menu-info h4 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 1.6em;
+    color: #d32f2f;
+    margin-bottom: 15px;
+}
+
+.menu-info p {
+    font-size: 1em;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.menu-info p strong {
+    color: #333;
+}
+
+/* Locations Section */
+.locations {
+    padding: 80px 20px;
+    background: url('https://www.transparenttextures.com/patterns/paper-fibers.png'), #fff5e6;
+    text-align: center;
+}
+
+.locations h2 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3em;
+    color: #d32f2f;
+    margin-bottom: 50px;
+}
+
+.location-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.location-card {
+    background: white;
+    border: 2px solid #d32f2f;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 350px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.location-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.location-card h3 {
+    font-size: 1.6em;
+    color: #d32f2f;
+    margin-bottom: 10px;
+}
+
+.location-card p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.map-link {
+    color: #d32f2f;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.map-link:hover {
+    color: #b71c1c;
+}
+
+/* Franchise Section */
+.franchise {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    text-align: center;
+    color: white;
+}
+
+.franchise h2 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.franchise p {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.franchise-button {
+    padding: 15px 40px;
+    background: #fff;
+    color: #d32f2f;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.2em;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.franchise-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: #f5f5f5;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    animation: slideIn 0.5s ease;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5em;
+    color: #d32f2f;
+    cursor: pointer;
+}
+
+.modal-content h3 {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-size: 2em;
+    color: #d32f2f;
+    margin-bottom: 20px;
+}
+
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-content label {
+    font-weight: 600;
+    color: #333;
+}
+
+.modal-content input,
+.modal-content textarea {
+    padding: 10px;
+    border: 2px solid #d32f2f;
+    border-radius: 5px;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+    border-color: #b71c1c;
+}
+
+.modal-content textarea {
+    resize: none;
+    height: 100px;
+}
+
+.submit-button {
+    padding: 12px;
+    background: linear-gradient(45deg, #d32f2f, #f44336);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(211, 47, 47, 0.5);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%);
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 20px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-logo img {
+    width: 100px;
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #f5f5f5;
+}
+
+footer p {
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+ fórum { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 15px 20px;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        flex-direction: column;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .hero-content h1 {
+        font-size: 3em;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8em;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu h2,
+    .locations h2,
+    .franchise h2 {
+        font-size: 2.2em;
+    }
+
+    .menu-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .menu-image img {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+    }
+
+    .accordion-content th,
+    .accordion-content td {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
